@@ -6,18 +6,22 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FirstComponent } from './myapp/first/first.component';
 import { SqrtPipe } from './pipes/sqrt.pipe';
-
+import { ROUTING } from './app.routing';
+import { CalcComponent } from './calc/calc/calc.component';
+import { MyserviceService } from './app.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
-    SqrtPipe
+    SqrtPipe,
+    CalcComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule
+    BrowserModule, FormsModule, ReactiveFormsModule, ROUTING, HttpModule
   ],
-  providers: [],
+  providers: [MyserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

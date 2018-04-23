@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private http: Http){}
   title = 'Some Title';
   names = ["Yash", "Chetan", "Me"];
   selectVal : string = "";
@@ -51,5 +55,11 @@ export class AppComponent {
     if(formcontrol.value.length < 5){
       return {"passwd": true};
     }
+  }
+
+  onClickGetData(){
+    this.http.get("http://earms-app-t-vm:8888/test/services/common/common/getImageTypeCodes").
+    map((response) => response.json()).
+    subscribe((data) => console.log("Service response", data));
   }
 }
